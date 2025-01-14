@@ -54,3 +54,7 @@ Missed point in the POC.
 
 ## CI/CD
 Missed point in the POC.
+
+## Vault: Storing Secrets and Sensitive Data
+
+Missed point in the POC
