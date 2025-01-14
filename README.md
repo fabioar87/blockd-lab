@@ -44,17 +44,28 @@ The POC development was based on a local vanilla version of `minikube`.
 
 ## Issues During the K8S Deployment
 
-Issues to investigate. The application does not have a proper probe, this can be a sensitive issue. the backend
-misses the usage too. When the chart is deployed, the service pod keeps restarting 3 times, before to 
-stabilize the service. More adjusts on the probes is necessary and also an improvement at the backed side capacity
-of receiving healthy requests.
+Issues to investigate: The application lacks proper probes, which could be a significant concern. 
+Additionally, the backend is not utilizing probes effectively. 
+When the chart is deployed, the service pod restarts three times before stabilizing. 
+Further adjustments to the probes are necessary, as well as improving the backend's capacity to handle healthy requests.
 
 ## Performance Testing
 Missed point in the POC.
 
-## CI/CD
+## Local Artifactory
 Missed point in the POC.
 
-## Vault: Storing Secrets and Sensitive Data
+## CI/CD
 
-Missed point in the POC
+The POC missed a proper application service CI/CD. The plan was:
+1. argoCD + adhoc CI strategy, may using JenkinX: for the service application deployment manifest.
+2. Jenkins: for the `transaction service` and the `docker`. 
+
+## Vault: Storing Secrets and Sensitive Data
+Missed point in the POC.
+
+## Service Mesh
+Missed point in the POC.
+
+## Security Enhancement
+Missed point in the POC.
