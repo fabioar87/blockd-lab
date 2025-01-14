@@ -38,7 +38,10 @@ $ argocd account update-password
 
 ## Interacting with argoCD
 
+In this POC, the service has been deployed manually, and further result was visualized using the argoCD UI:
+![argoCD UI](../doc/argo.png). 
 
+It is possible also, define a new app to be deployed, and sync with the main repo using the UI.
 
 ## Production Considerations
 
