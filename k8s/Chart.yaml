@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Transaction application chart
+name: transaction-service
+version: 0.0.1

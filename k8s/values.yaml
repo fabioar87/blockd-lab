@@ -1,0 +1,61 @@
+# Values definition
+# Attributes used in the pods
+
+replicas: 3
+
+serviceComponent: transactionservice
+
+image:
+  repository: fabiomatcomp/assignment-2
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: transactionservice
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080
+
+ingress:
+  fqdn: test.transactionservice
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+
+resources:
+  limits:
+    memory: 1300Mi
+  requests:
+    memory: 1200Mi
+
+# Actuator health checks, readiness and liveness pointing to the same
+# path. The springboot version used in the demo is the 2.2.6.
+readinessPath: /actuator/health
+livenessPath: /actuator/health
+
+# Liveness probe tuning - time in seconds
+livenessPeriod: 60
+livenessTimeout: 15
+
+# Readiness probe tuning - time in seconds
+readinessPeriod: 20
+readinessTimeout: 5
+
+db: mysql
+dbReplicas: 1
+storageSize: "5Gi"
+
+securityContext:
+  runAsUser: 11111
+  fsGroup: 11111
+  supplementalGroups: [ 0 ]
+
+dbImage:
+  repository: mysql
+  tag: latest
+  pullPolicy: IfNotPresent
+
+dbResources:
+  limits:
+    memory: 1300Mi
+  requests:
+    memory: 1200Mi

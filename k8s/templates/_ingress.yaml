@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.serviceComponent }}
+  labels:
+    app: {{ .Values.serviceComponent }}
+    release: "{{ .Release.Name }}"
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.fqdn }}
+      http:
+        paths:
+        - path: "/"
+          backend:
+            service:
+              name: flightservice
+              port:
+                number: 80
+          pathType: Prefix

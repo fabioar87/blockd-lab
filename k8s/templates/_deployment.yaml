@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # name: {{ template "flightservice.fullname" . }}
+  name: flightservice
+spec:
+  selector:
+    matchLabels:
+      app: flightservice
+  replicas: {{ default 1 .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        # app: {{ template "flightservice.name" . }}
+        app: flightservice
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+{{/*        - name: dummy-to-test*/}}
+{{/*          image: busybox*/}}
+{{/*          command: ["bin/sh", "-c", 'while true; do sleep 5; done' ]*/}}
+        - name: {{ template "flightservice.name" . }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://db:3306/reservation"
+          resources:
+  {{ toYaml .Values.resources | indent 10 }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readinessPath }}
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: {{ .Values.readinessTimeout }}
+            periodSeconds: {{ .Values.readinessPeriod }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessPath }}
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: {{ .Values.livenessTimeout }}
+            periodSeconds: {{ .Values.livenessPeriod }}

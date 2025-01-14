@@ -13,6 +13,6 @@ Sample and format:
 
 ```shell
    curl --header "Content-Type: application/json" \
--X POST http://<fqdn>api/transaction/ \
+-X POST http://<fqdn>api/models/ \
 --data '{"transactionId":"0f7e46df-c685-4df9-9e23-e75e7ac8ba7a","amount": "99.99" ,"timestamp":"2009-09-28T19:03:12Z"}'
 ```

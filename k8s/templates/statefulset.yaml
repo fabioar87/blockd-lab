@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+  labels:
+    app: db
+    component: {{ .Values.db }}
+    release: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: db
+  serviceName: db
+  replicas: {{ default 1 .Values.dbReplicas }}
+  updateStrategy:
+    type: RollingUpdate
+  volumeClaimTemplates:
+    - metadata:
+        name: data-storage
+        annotations:
+          pv.beta.kubernetes.io/gid: "11111"
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{ default "1Gi"  .Values.storageSize }}
+  template:
+    metadata:
+      labels:
+        app: db
+        component: {{ .Values.db }}
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 30
+      # This will make sure the mounted PVCs are writable by the forgerock user with gid 111111.
+      securityContext:
+{{ toYaml .Values.securityContext | indent 8 }}
+      containers:
+        - name: db
+          image: {{ .Values.dbImage.repository }}:{{ .Values.dbImage.tag }}
+          imagePullPolicy: {{ .Values.dbImage.pullPolicy }}
+          #terminationGracePeriodSeconds: 10
+          resources:
+{{ toYaml .Values.dbResources | indent 12 }}
+          env:
+            - name: MYSQL_DATABASE
+              value: transaction
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: MYSQL_ROOT_PASSWORD
+                  name: db-passwd
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: data-storage
+              mountPath: /var/lib/mysql
+          livenessProbe:
+            tcpSocket:
+              port: metrics
+            initialDelaySeconds: 60
+            periodSeconds: 120
