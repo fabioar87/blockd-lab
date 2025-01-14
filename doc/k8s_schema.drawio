@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.5">
   <diagram name="Page-1" id="UpIutoUugQVWGNE2OLsK">
     <mxGraphModel dx="1434" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -53,7 +53,7 @@
         <mxCell id="OzOBJrEiFOoFjPXLPz0q-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="9VSGa8-es2IJRm255jRK-22" target="OzOBJrEiFOoFjPXLPz0q-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9VSGa8-es2IJRm255jRK-22" value="Postman" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+        <mxCell id="9VSGa8-es2IJRm255jRK-22" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="190" y="323" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="OzOBJrEiFOoFjPXLPz0q-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="OzOBJrEiFOoFjPXLPz0q-1" target="9VSGa8-es2IJRm255jRK-15" edge="1">
@@ -93,6 +93,15 @@
               <mxPoint x="510" y="445" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="GZ36FY0QfPy_CoLehOos-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Client&lt;/h1&gt;&lt;div&gt;The client shall be able to REST call the API inserting a new transaction.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;The client shall be able to REST&amp;nbsp;&lt;br&gt;call the API getting all the transactions stored in thew MySQL base&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="20" y="130" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ36FY0QfPy_CoLehOos-4" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Backend&lt;/h1&gt;&lt;div&gt;Backend implemented using MySQL engine.&lt;br&gt;Statefulset instance.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="840" y="319" width="240" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="GZ36FY0QfPy_CoLehOos-5" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;API Service&lt;/h1&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="495" y="180" width="140" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

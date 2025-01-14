@@ -12,3 +12,17 @@ Sample and format:
    curl --header "Content-Type: application/json" \
 -X POST http://<fqdn>api/models/ \ --data '{"transactionId":"0f7e46df-c685-4df9-9e23-e75e7ac8ba7a","amount": "99.99" ,"timestamp":"2009-09-28T19:03:12Z"}'
 ```
+
+## API Service 
+
+The API service is a `Golang` web application, using the version 1.22. More information about the service project
+can be found [here](./api/README.md). The API will insert a new transaction in the following format:
+
+```json
+{
+  "transactionId": "<UUID format>",
+  "amount": "<Float format>",
+  "timestamp": "<String format>"
+}
+```
+
