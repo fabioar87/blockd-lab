@@ -1,12 +1,13 @@
 # Values definition
 # Attributes used in the pods
 
-replicas: 3
+replicas: 1
 
 serviceComponent: transactionservice
 
 image:
-  repository: fabiomatcomp/assignment-2
+  # repository: fabiomatcomp/assignment-2
+  repository: transactionservice
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -17,7 +18,7 @@ service:
   internalPort: 8080
 
 ingress:
-  fqdn: test.transactionservice
+  fqdn: test.transaction.service
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: "/"
 
@@ -28,16 +29,16 @@ resources:
     memory: 1200Mi
 
 # Actuator health checks, readiness and liveness pointing to the same
-# path. The springboot version used in the demo is the 2.2.6.
-readinessPath: /actuator/health
-livenessPath: /actuator/health
+# For demo the golang application is always healthy
+readinessPath: /api/health
+livenessPath: /api/health
 
 # Liveness probe tuning - time in seconds
-livenessPeriod: 60
-livenessTimeout: 15
+livenessPeriod: 20
+livenessTimeout: 10
 
 # Readiness probe tuning - time in seconds
-readinessPeriod: 20
+readinessPeriod: 10
 readinessTimeout: 5
 
 db: mysql

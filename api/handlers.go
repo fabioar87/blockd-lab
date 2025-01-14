@@ -49,4 +49,12 @@ func (driver *DBClient) CreateTransaction(w http.ResponseWriter, r *http.Request
 	json.NewEncoder(w).Encode(transaction)
 }
 
+func (driver *DBClient) GetHealth(w http.ResponseWriter, r *http.Request) {
+	// Mock health status check
+	// Necessary for k8s probes
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(http.StatusText(http.StatusOK)))
+}
+
 // func todoRouter(todoFile string, l sync.Locker) http.HandlerFunc {}

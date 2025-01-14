@@ -17,7 +17,7 @@ spec:
         - path: "/"
           backend:
             service:
-              name: flightservice
+              name: {{ .Values.serviceComponent }}
               port:
                 number: 80
           pathType: Prefix

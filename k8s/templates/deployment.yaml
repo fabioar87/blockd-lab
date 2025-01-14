@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # name: {{ template "flightservice.fullname" . }}
-  name: flightservice
+  name: transactionservice
 spec:
   selector:
     matchLabels:
-      app: flightservice
+      app: transactionservice
   replicas: {{ default 1 .Values.replicas }}
   template:
     metadata:
       labels:
-        # app: {{ template "flightservice.name" . }}
-        app: flightservice
+        app: transactionservice
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
@@ -20,15 +18,18 @@ spec:
 {{/*        - name: dummy-to-test*/}}
 {{/*          image: busybox*/}}
 {{/*          command: ["bin/sh", "-c", 'while true; do sleep 5; done' ]*/}}
-        - name: {{ template "flightservice.name" . }}
+        - name: {{ template "transactionservice.name" . }}
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 8080
               name: http
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://db:3306/reservation"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: MYSQL_ROOT_PASSWORD
+                  name: db-passwd
           resources:
   {{ toYaml .Values.resources | indent 10 }}
           readinessProbe:

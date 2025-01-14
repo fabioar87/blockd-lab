@@ -1,10 +1,9 @@
 
-{{- define "flightservice.fullname" -}}
-{{- $name := default "flightservice" .Values.nameOverride -}}
+{{- define "transactionservice.fullname" -}}
+{{- $name := default "transactionservice" .Values.nameOverride -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "flightservice.name" -}}
-{{- default "flightservice" .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "transactionservice.name" -}}
+{{- default "transactionservice" .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-

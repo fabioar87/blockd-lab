@@ -1,8 +1,10 @@
 package models
 
 import (
+	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"os"
 )
 
 type Transaction struct {
@@ -13,7 +15,9 @@ type Transaction struct {
 }
 
 func InitDB() (*gorm.DB, error) {
-	dsn := "root:test1234@tcp(127.0.0.1:3306)/transaction"
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dsn := fmt.Sprintf("root:%s@tcp(db:3306)/transaction", dbPassword)
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")

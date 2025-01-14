@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ .Values.service.name }}
   labels:
-    app: {{ template "flightservice.fullname" . }}
+    app: {{ template "transactionservice.fullname" . }}
     release: "{{ .Release.Name }}"
 spec:
   type: {{ .Values.service.type }}
@@ -13,7 +13,7 @@ spec:
       protocol: TCP
       name: {{ .Values.service.name }}
   selector:
-    app:  {{ template "flightservice.name" . }}
+    app:  {{ template "transactionservice.name" . }}
     release: {{ .Release.Name }}
 
 ---

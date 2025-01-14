@@ -34,6 +34,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/transactions", dbClient.GetTransactions).Methods("GET")
 	router.HandleFunc("/api/transaction", dbClient.CreateTransaction).Methods("POST")
+	router.HandleFunc("/api/health", dbClient.GetHealth).Methods("GET")
 
 	s := &http.Server{
 		Addr:         fmt.Sprintf("%s:%d", *host, *port),

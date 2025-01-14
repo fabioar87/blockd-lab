@@ -12,4 +12,6 @@ COPY . .
 
 RUN GOARCH=amd64 GOOS=linux go build -o transactionservice .
 
-ENTRYPOINT ["bash", "-c", "while true; do sleep 1000; done"]
+EXPOSE 8080
+
+ENTRYPOINT ["./transactionservice", "-p", "8080"]
